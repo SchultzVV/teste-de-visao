@@ -1,20 +1,6 @@
 import cv2
 import numpy as np
 import base64
-import matplotlib.pyplot as plt
-
-
-def decode_base64_image(base64_image):
-    image_bytes = base64.b64decode(base64_image)
-    image = np.frombuffer(image_bytes, np.uint8)
-    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
-    return image
-
-def cvt_and_plot(img):
-    image_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    plt.imshow(image_rgb)
-    plt.axis('off')  # Opcional: Desativar eixos
-    plt.show()
 
 def remove_salt_and_pepper(img):
     filtered_image = cv2.medianBlur(img, 5)
@@ -25,6 +11,12 @@ def remove_salt_and_pepper(img):
 def find_silo(img):
     bbox_info = []
     hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+    lower = np.array([0, 0, 41])
+    uper= np.array([20, 89, 73])
+    mask2 = cv2.inRange(hsv_img, lower, uper)
+    lower = np.array([0, 10, 43])
+    uper= np.array([16, 124, 93])
     lower = np.array([0, 10, 25])
     uper= np.array([16, 140, 84])
     mask2 = cv2.inRange(hsv_img, lower, uper)
