@@ -1,7 +1,7 @@
 # Makefile for Python Flask Application
 
 # Define a imagem Docker a ser usada
-DOCKER_IMAGE = fiesc-visao
+DOCKER_IMAGE = teste-visao
 
 # Diretório de código-fonte da aplicação
 #SRC_DIR = /home/v/Desktop/fiesc-visao
